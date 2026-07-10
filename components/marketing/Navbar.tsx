@@ -9,10 +9,10 @@ import { ButtonLink } from "@/components/ui/Button";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
 
 const LINKS = [
-  { href: "#hero", label: "Accueil" },
-  { href: "#expertises", label: "Nos expertises" },
-  { href: "#realisations", label: "Réalisations" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#hero", label: "Accueil" },
+  { href: "/#expertises", label: "Nos expertises" },
+  { href: "/#realisations", label: "Réalisations" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -42,7 +42,7 @@ export function Navbar() {
           scrolled ? "shadow-[0_12px_36px_rgba(18,21,31,0.14)]" : "shadow-[0_6px_20px_rgba(18,21,31,0.08)]"
         }`}
       >
-        <Link href="#hero" className="flex-shrink-0">
+        <Link href="/" className="flex-shrink-0">
           <Logo theme="light" size="sm" />
         </Link>
 
@@ -71,7 +71,7 @@ export function Navbar() {
               Connexion
             </Link>
           )}
-          <ButtonLink href="#contact" variant="dark" size="md">
+          <ButtonLink href="/#contact" variant="dark" size="md">
             Demander un devis
           </ButtonLink>
         </div>
@@ -107,7 +107,7 @@ export function Navbar() {
           {signedIn && (
             <LogoutButton className="text-left text-sm font-medium text-ink-600 hover:text-ink-900" />
           )}
-          <ButtonLink href="#contact" variant="dark" size="md" className="justify-center">
+          <ButtonLink href="/#contact" variant="dark" size="md" className="justify-center">
             Demander un devis
           </ButtonLink>
         </nav>

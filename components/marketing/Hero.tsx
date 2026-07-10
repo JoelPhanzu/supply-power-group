@@ -5,7 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 export function Hero() {
   return (
     <section id="hero" className="relative">
-      <div className="relative h-[600px] w-full overflow-hidden sm:h-[640px] md:h-[700px]">
+      <div className="relative min-h-[600px] w-full sm:min-h-[640px] md:min-h-[700px]">
         <Image
           src="https://picsum.photos/seed/supply-power-wind-turbines-sunset/1920/1080"
           alt="Éoliennes industrielles au coucher du soleil"
@@ -15,8 +15,8 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/65 to-ink-900/25" />
 
-        <div className="relative z-10 mx-auto h-full max-w-[1100px] px-6">
-          <div className="max-w-[600px] pt-28 md:pt-32">
+        <div className="relative z-10 mx-auto max-w-[1100px] px-6">
+          <div className="max-w-[600px] pb-16 pt-28 md:pb-24 md:pt-32">
             <h1 className="mb-5 font-heading text-4xl font-bold leading-[1.1] text-white md:text-6xl">
               L&apos;énergie globale au service de votre puissance industrielle.
             </h1>
@@ -41,7 +41,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-20 mx-auto max-w-[1000px] px-6">
-        <div className="-mt-14 md:-mt-16">
+        <div className="mt-6 md:-mt-16">
           <StatsBar />
         </div>
       </div>

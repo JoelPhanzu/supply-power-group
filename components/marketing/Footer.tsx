@@ -1,11 +1,11 @@
 import { Logo } from "@/components/ui/Logo";
 
 const NAV = [
-  { href: "#hero", label: "Accueil" },
-  { href: "#expertises", label: "Nos Expertises" },
-  { href: "#realisations", label: "Transition & Acteur Minier" },
-  { href: "#simulateur", label: "Simulateur de Puissance" },
-  { href: "#synergie", label: "Synergie Supply Power Group" },
+  { href: "/#hero", label: "Accueil" },
+  { href: "/#expertises", label: "Nos Expertises" },
+  { href: "/#realisations", label: "Transition & Acteur Minier" },
+  { href: "/#simulateur", label: "Simulateur de Puissance" },
+  { href: "/#synergie", label: "Synergie Supply Power Group" },
 ];
 
 export function Footer() {
@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="bg-navy-950 pt-16">
       <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-10 px-6 pb-14 sm:grid-cols-2 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <a href="#hero">
+          <a href="/">
             <Logo theme="dark" size="sm" />
           </a>
           <p className="mt-4 max-w-[280px] text-sm text-text-mute">
