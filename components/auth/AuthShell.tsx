@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { Lightning } from "@phosphor-icons/react/ssr";
 import type { ReactNode } from "react";
 
 export function AuthShell({
@@ -15,19 +13,12 @@ export function AuthShell({
 }) {
   return (
     <div
-      className="flex min-h-screen flex-col items-center justify-center bg-navy-950 px-6 py-16"
+      className="flex min-h-screen flex-col items-center justify-center bg-navy-950 px-6 pb-16 pt-32"
       style={{
         backgroundImage:
           "radial-gradient(ellipse 900px 500px at 20% -10%, rgba(74,124,255,0.18), transparent 60%), radial-gradient(ellipse 700px 500px at 90% 10%, rgba(255,90,31,0.12), transparent 60%)",
       }}
     >
-      <Link href="/" className="mb-8 flex items-center gap-2.5 font-heading text-lg font-bold">
-        <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-gradient-accent">
-          <Lightning weight="fill" className="h-5 w-5 text-white" />
-        </span>
-        SUPPLY <span className="text-accent-500">POWER</span>
-      </Link>
-
       <div className="w-full max-w-[440px] rounded-[28px] border border-border-soft bg-navy-800 p-8 md:p-10">
         <h1 className="mb-1.5 font-heading text-2xl font-bold">{title}</h1>
         <p className="mb-7 text-sm text-text-mute">{subtitle}</p>

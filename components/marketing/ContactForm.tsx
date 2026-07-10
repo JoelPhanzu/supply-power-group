@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { MapPin, Phone, EnvelopeSimple } from "@phosphor-icons/react/ssr";
 import { useSimulator } from "@/components/marketing/SimulatorContext";
 import { submitQuoteRequest } from "@/lib/actions/quote-requests";
 import { ASSISTANCE_TYPES } from "@/lib/assistance-types";
@@ -54,46 +53,21 @@ export function ContactForm() {
   }
 
   return (
-    <section
-      id="contact"
-      className="bg-navy-950 py-28"
-      style={{
-        backgroundImage:
-          "radial-gradient(ellipse 800px 500px at 100% 0%, rgba(255,90,31,0.08), transparent 60%)",
-      }}
-    >
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-16 px-6 md:grid-cols-[0.9fr_1.2fr]">
-        <div>
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
-            <span className="h-[7px] w-[7px] rounded-full bg-gradient-accent shadow-[0_0_12px_#ff5a1f]" />
-            Parlons de votre projet
-          </p>
-          <h2 className="mb-4 font-heading text-3xl font-bold md:text-[2.4rem]">
-            Faire une demande d&apos;étude
+    <section id="contact" className="bg-surface-page py-28">
+      <div className="mx-auto max-w-[720px] px-6">
+        <div className="mb-10 text-center">
+          <h2 className="mb-3 font-heading text-3xl font-bold text-ink-900 md:text-4xl">
+            Faire une Demande d&apos;Étude
           </h2>
-          <p className="mb-8 text-text-mute">
-            Décrivez-nous votre besoin, notre équipe technique reviendra vers vous sous 48h avec
-            une proposition adaptée à votre site et à votre budget.
+          <p className="text-ink-600">
+            Remplissez ce formulaire d&apos;avant-projet. Nos techniciens vous recontacteront sous
+            24 heures pour planifier un audit technique ou chiffrer vos fournitures.
           </p>
-          <div className="flex flex-col gap-4 text-sm text-text-mute">
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-500" />
-              Avenue Nyamuragira 59, Gombe, Kinshasa — Immeuble Beautour
-            </div>
-            <div className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-500" />
-              +243 816 283 633
-            </div>
-            <div className="flex items-start gap-3">
-              <EnvelopeSimple className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-500" />
-              contact@supplypowergroup.com
-            </div>
-          </div>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-[28px] border border-border-soft bg-navy-800 p-6 md:p-10"
+          className="rounded-[28px] border border-border-light bg-surface-card p-6 shadow-[0_10px_30px_rgba(18,21,31,0.06)] md:p-10"
         >
           <div className="mb-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
             <Field label="Nom complet *">
@@ -153,7 +127,7 @@ export function ContactForm() {
           </div>
 
           {error && (
-            <p className="mb-5 rounded-lg border border-red-400/35 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+            <p className="mb-5 rounded-lg border border-red-400/35 bg-red-50 px-4 py-3 text-sm text-red-600">
               {error}
             </p>
           )}
@@ -161,13 +135,13 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={pending}
-            className="inline-flex w-full items-center justify-center rounded-full bg-gradient-accent px-8 py-4 text-base font-semibold text-white shadow-[0_10px_30px_rgba(255,60,40,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(255,60,40,0.5)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex w-full items-center justify-center rounded-full bg-ink-900 px-8 py-4 text-base font-semibold text-white shadow-[0_10px_25px_rgba(18,21,31,0.2)] transition-all hover:-translate-y-0.5 hover:bg-navy-900 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {pending ? "Envoi en cours..." : "Envoyer ma demande"}
+            {pending ? "Envoi en cours..." : "Soumettre mon projet"}
           </button>
 
           {submitted && (
-            <p className="mt-4 rounded-lg border border-emerald-400/35 bg-emerald-400/10 px-4 py-3.5 text-center text-sm text-emerald-300">
+            <p className="mt-4 rounded-lg border border-emerald-400/35 bg-emerald-50 px-4 py-3.5 text-center text-sm text-emerald-700">
               Merci ! Votre demande a bien été enregistrée. Notre équipe vous recontactera très
               prochainement.
             </p>
@@ -179,12 +153,12 @@ export function ContactForm() {
 }
 
 const inputClass =
-  "w-full rounded-lg border border-border-soft bg-navy-700 px-4 py-3 text-[0.95rem] text-text-main placeholder:text-text-faint focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/25";
+  "w-full rounded-lg border border-border-light bg-surface-page px-4 py-3 text-[0.95rem] text-ink-900 placeholder:text-ink-400 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-semibold">{label}</label>
+      <label className="mb-2 block text-sm font-semibold text-ink-900">{label}</label>
       {children}
     </div>
   );

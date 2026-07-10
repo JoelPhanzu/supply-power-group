@@ -16,8 +16,17 @@
   --text-faint: #626f8f;
   --border-soft: rgba(255, 255, 255, 0.08);
 
-  --background: var(--navy-950);
-  --foreground: var(--text-main);
+  /* Light-theme tokens — public marketing site (dashboard/admin/auth stay on
+     the dark navy tokens above). */
+  --surface-page: #f5f6f9;
+  --surface-card: #ffffff;
+  --ink-900: #12151f;
+  --ink-600: #565f75;
+  --ink-400: #8991a3;
+  --border-light: #e6e8ee;
+
+  --background: var(--surface-page);
+  --foreground: var(--ink-900);
 }
 
 @theme inline {
@@ -38,6 +47,13 @@
   --color-text-mute: var(--text-mute);
   --color-text-faint: var(--text-faint);
   --color-border-soft: var(--border-soft);
+
+  --color-surface-page: var(--surface-page);
+  --color-surface-card: var(--surface-card);
+  --color-ink-900: var(--ink-900);
+  --color-ink-600: var(--ink-600);
+  --color-ink-400: var(--ink-400);
+  --color-border-light: var(--border-light);
 
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);

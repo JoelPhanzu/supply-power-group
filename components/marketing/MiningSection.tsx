@@ -1,60 +1,74 @@
-import { Atom } from "@phosphor-icons/react/ssr";
+import Image from "next/image";
 
-const TAGS = ["Uranium", "Hydrocarbures", "Sites isolés", "Alimentation hybride"];
+const INFO_BLOCKS = [
+  {
+    label: "Extraction",
+    description: "Uranium et Hydrocarbures",
+  },
+  {
+    label: "Infrastructure",
+    description: "Cabines de raccordement dédiées",
+  },
+];
 
 export function MiningSection() {
   return (
-    <section
-      id="realisations"
-      className="bg-navy-950 py-28"
-      style={{
-        backgroundImage:
-          "linear-gradient(180deg, transparent, rgba(74,124,255,0.05), transparent)",
-      }}
-    >
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-16 px-6 md:grid-cols-[0.85fr_1.15fr]">
-        <div className="flex flex-col items-center gap-8">
-          <div className="rounded-full border border-border-soft bg-navy-700 px-5 py-2.5 text-sm text-text-mute">
-            Secteur Minier &amp; Ressources
+    <section id="realisations" className="bg-surface-page py-28">
+      <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-14 px-6 md:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="relative col-span-2 h-[200px] overflow-hidden rounded-[24px]">
+            <Image
+              src="https://picsum.photos/seed/supply-power-solar-panels/900/500"
+              alt="Ferme solaire industrielle"
+              fill
+              className="object-cover"
+            />
           </div>
-          <div className="relative flex h-[260px] w-[260px] items-center justify-center">
-            <div className="animate-spin-slow absolute inset-0 rounded-full border border-dashed border-accent-500/35" />
-            <div className="animate-spin-slow-reverse absolute inset-[30px] rounded-full border border-dashed border-blue-400/35" />
-            <Atom
-              weight="duotone"
-              className="h-16 w-16 text-accent-500 drop-shadow-[0_0_20px_rgba(255,90,31,0.5)]"
+          <div className="relative h-[160px] overflow-hidden rounded-[24px]">
+            <Image
+              src="https://picsum.photos/seed/supply-power-mining-excavator/450/400"
+              alt="Excavatrice sur site minier"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-[160px] overflow-hidden rounded-[24px]">
+            <Image
+              src="https://picsum.photos/seed/supply-power-industrial-equipment/450/400"
+              alt="Équipement industriel"
+              fill
+              className="object-cover"
             />
           </div>
         </div>
 
         <div>
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
-            <span className="h-[7px] w-[7px] rounded-full bg-gradient-accent shadow-[0_0_12px_#ff5a1f]" />
-            De la ressource à l&apos;indépendance
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
+            Transition & acteur minier
           </p>
-          <h2 className="mb-5 font-heading text-3xl font-bold md:text-[2.3rem]">
-            De la ressource minière à l&apos;indépendance énergétique
+          <h2 className="mb-5 font-heading text-3xl font-bold text-ink-900 md:text-[2.3rem]">
+            De la ressource minière à l&apos;indépendance
           </h2>
-          <p className="mb-4 text-text-mute">
-            La République Démocratique du Congo dispose d&apos;un potentiel exceptionnel en
-            ressources stratégiques — uranium, hydrocarbures et minerais critiques. SUPPLY POWER
-            GROUP accompagne les acteurs de l&apos;extraction en sécurisant leur alimentation grâce
-            à des solutions hybrides combinant production thermique, solaire et stockage.
+          <p className="mb-4 text-ink-600">
+            SUPPLY POWER GROUP combine ses expertises énergétiques et son rôle d&apos;acteur minier
+            en RDC. Nous intervenons dans l&apos;extraction et la transformation de ressources
+            stratégiques d&apos;uranium et d&apos;hydrocarbures nécessaires à la souveraineté
+            énergétique.
           </p>
-          <p className="mb-5 text-text-mute">
-            Nos sites miniers isolés deviennent ainsi énergétiquement autonomes : production
-            locale, réseaux de distribution internes et maintenance continue permettent de
-            garantir la continuité d&apos;exploitation, même dans les zones les plus reculées du
-            territoire.
+          <p className="mb-7 text-ink-600">
+            Parallèlement, nous déployons des micro-réseaux et des solutions d&apos;alimentation
+            hybrides (solaire/diesel) directement sur les sites d&apos;exploitation minière pour
+            assurer un approvisionnement continu, propre et sans interruptions.
           </p>
-          <div className="flex flex-wrap gap-2.5">
-            {TAGS.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-blue-400/25 bg-blue-400/10 px-4 py-1.5 text-[0.82rem] font-medium text-blue-300"
+          <div className="grid grid-cols-2 gap-4">
+            {INFO_BLOCKS.map((block) => (
+              <div
+                key={block.label}
+                className="rounded-2xl border border-border-light bg-surface-card px-5 py-4"
               >
-                {tag}
-              </span>
+                <p className="mb-1 text-sm font-bold text-ink-900">{block.label}</p>
+                <p className="text-[0.82rem] text-ink-600">{block.description}</p>
+              </div>
             ))}
           </div>
         </div>

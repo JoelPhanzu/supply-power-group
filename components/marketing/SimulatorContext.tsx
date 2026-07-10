@@ -22,7 +22,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
 
   const prefillMessage = useMemo(
     () =>
-      `Bonjour, je souhaite une étude pour : ${EQUIPMENT_LABELS[equipment]} — ${powerKva} kVA — Localisation : ${location}.`,
+      `Bonjour, je souhaite une étude pour : ${EQUIPMENT_LABELS[equipment]}, ${powerKva} kVA, Localisation : ${location}.`,
     [equipment, powerKva, location]
   );
 

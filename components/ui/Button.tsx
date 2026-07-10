@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "ghost";
+type Variant = "primary" | "ghost" | "dark";
 type Size = "md" | "lg";
 
 const base =
@@ -12,6 +12,7 @@ const variants: Record<Variant, string> = {
     "bg-gradient-accent text-white shadow-[0_10px_30px_rgba(255,60,40,0.35)] hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(255,60,40,0.5)]",
   ghost:
     "bg-white/[0.03] text-text-main border border-border-soft hover:border-blue-400 hover:bg-blue-400/10",
+  dark: "bg-ink-900 text-white shadow-[0_10px_25px_rgba(18,21,31,0.25)] hover:-translate-y-0.5 hover:bg-navy-900",
 };
 
 const sizes: Record<Size, string> = {

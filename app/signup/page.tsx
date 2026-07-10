@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AuthShell, authInputClass } from "@/components/auth/AuthShell";
 import { createClient } from "@/lib/supabase/client";
+import { Navbar } from "@/components/marketing/Navbar";
+import { Footer } from "@/components/marketing/Footer";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -49,36 +51,42 @@ export default function SignupPage() {
 
   if (needsConfirmation) {
     return (
-      <AuthShell
-        title="Vérifie ta boîte mail"
-        subtitle="Dernière étape avant d'accéder à ton espace."
-        footer={
-          <Link href="/login" className="font-semibold text-accent-500 hover:underline">
-            Retour à la connexion
-          </Link>
-        }
-      >
-        <p className="text-sm text-text-mute">
-          Un e-mail de confirmation a été envoyé à <strong className="text-text-main">{email}</strong>.
-          Clique sur le lien qu&apos;il contient pour activer ton compte.
-        </p>
-      </AuthShell>
+      <>
+        <Navbar />
+        <AuthShell
+          title="Vérifie ta boîte mail"
+          subtitle="Dernière étape avant d'accéder à ton espace."
+          footer={
+            <Link href="/login" className="font-semibold text-accent-500 hover:underline">
+              Retour à la connexion
+            </Link>
+          }
+        >
+          <p className="text-sm text-text-mute">
+            Un e-mail de confirmation a été envoyé à <strong className="text-text-main">{email}</strong>.
+            Clique sur le lien qu&apos;il contient pour activer ton compte.
+          </p>
+        </AuthShell>
+        <Footer />
+      </>
     );
   }
 
   return (
-    <AuthShell
-      title="Créer un compte"
-      subtitle="Suis tes demandes de devis et échange directement avec notre équipe."
-      footer={
-        <>
-          Déjà un compte ?{" "}
-          <Link href="/login" className="font-semibold text-accent-500 hover:underline">
-            Se connecter
-          </Link>
-        </>
-      }
-    >
+    <>
+      <Navbar />
+      <AuthShell
+        title="Créer un compte"
+        subtitle="Suis tes demandes de devis et échange directement avec notre équipe."
+        footer={
+          <>
+            Déjà un compte ?{" "}
+            <Link href="/login" className="font-semibold text-accent-500 hover:underline">
+              Se connecter
+            </Link>
+          </>
+        }
+      >
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div>
           <label className="mb-2 block text-sm font-semibold">Nom complet *</label>
@@ -148,5 +156,7 @@ export default function SignupPage() {
         </button>
       </form>
     </AuthShell>
+      <Footer />
+    </>
   );
 }

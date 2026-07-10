@@ -1,52 +1,61 @@
-import { Buildings, GearSix, Leaf } from "@phosphor-icons/react/ssr";
+import { Buildings, GearSix, Leaf, CheckCircle, ArrowRight } from "@phosphor-icons/react/ssr";
 
 const CARDS = [
   {
     icon: Buildings,
-    number: "01",
+    iconClass: "bg-blue-400/10 text-blue-400",
     title: "Infrastructures & Réseaux",
+    intro:
+      "Nous assurons l'ingénierie lourde pour garantir le transport et la distribution d'énergie.",
     items: [
-      "Construction de cabines BT & HT",
-      "Centrales de production",
-      "Lignes de transport & distribution",
+      "Construction & gestion de cabines BT & HT",
+      "Centrales thermiques, solaires & hydroélectriques",
+      "Réseaux de canalisation & lignes de transport",
     ],
-    featured: false,
+    link: "Demander une étude",
   },
   {
     icon: GearSix,
-    number: "02",
+    iconClass: "bg-emerald-500/10 text-emerald-600",
     title: "Solutions & Fournitures",
+    intro:
+      "La flexibilité de notre chaîne d'approvisionnement répond à tous vos besoins en équipements de puissance.",
     items: [
-      "Vente d'énergie",
-      "Fourniture de groupes électrogènes",
-      "Distribution de matériel certifié",
+      "Achat de gros & vente d'électricité, gaz, pétrole",
+      "Fourniture de groupes électrogènes toutes puissances",
+      "Distribution de matériels électriques certifiés",
     ],
-    featured: true,
+    link: "Consulter le catalogue",
   },
   {
     icon: Leaf,
-    number: "03",
+    iconClass: "bg-accent-500/10 text-accent-500",
     title: "Transition & Efficacité",
-    items: ["Audits énergétiques", "Bornes de recharge VE", "Rénovation basse consommation"],
-    featured: false,
+    intro:
+      "Optimisez vos factures énergétiques et préparez l'avenir grâce à nos audits technologiques.",
+    items: [
+      "Audits de consommation & Smart Grids",
+      "Installation de bornes de recharge VE",
+      "Rénovation énergétique basse consommation",
+    ],
+    link: "Lancer une transition",
   },
 ];
 
 export function Expertises() {
   return (
-    <section id="expertises" className="bg-navy-950 py-28">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <section id="expertises" className="bg-surface-page pb-28 pt-36 md:pt-40">
+      <div className="mx-auto max-w-[1100px] px-6">
         <div className="mx-auto mb-14 max-w-[640px] text-center">
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
-            <span className="h-[7px] w-[7px] rounded-full bg-gradient-accent shadow-[0_0_12px_#ff5a1f]" />
-            Nos domaines d&apos;intervention
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
+            Notre savoir-faire
           </p>
-          <h2 className="font-heading text-3xl font-bold md:text-4xl">
-            Trois piliers pour sécuriser votre énergie
+          <h2 className="font-heading text-3xl font-bold text-ink-900 md:text-4xl">
+            Une expertise intégrée sur toute la chaîne de valeur énergétique
           </h2>
-          <p className="mt-3 text-base text-text-mute">
-            Une offre intégrée, de l&apos;infrastructure lourde à l&apos;efficacité énergétique de
-            demain.
+          <p className="mt-3 text-base text-ink-600">
+            Nous concevons des installations sécurisées et pérennes adaptées aux exigences des
+            industries modernes.
           </p>
         </div>
 
@@ -54,27 +63,28 @@ export function Expertises() {
           {CARDS.map((card) => (
             <article
               key={card.title}
-              className={`group relative overflow-hidden rounded-[28px] border p-10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)] ${
-                card.featured
-                  ? "border-accent-500/35 bg-gradient-to-b from-accent-500/[0.09] to-navy-800 hover:border-accent-500/40"
-                  : "border-border-soft bg-gradient-to-b from-navy-700 to-navy-800 hover:border-accent-500/40"
-              }`}
+              className="group flex flex-col rounded-[28px] border border-border-light bg-surface-card p-9 shadow-[0_10px_30px_rgba(18,21,31,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_45px_rgba(18,21,31,0.1)]"
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5">
-                <card.icon weight="duotone" className="h-7 w-7 text-accent-500" />
+              <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl ${card.iconClass}`}>
+                <card.icon weight="duotone" className="h-7 w-7" />
               </div>
-              <h3 className="mb-4 font-heading text-xl font-bold">{card.title}</h3>
-              <ul className="space-y-3">
+              <h3 className="mb-3 font-heading text-xl font-bold text-ink-900">{card.title}</h3>
+              <p className="mb-5 text-sm text-ink-600">{card.intro}</p>
+              <ul className="mb-7 flex-1 space-y-2.5">
                 {card.items.map((item) => (
-                  <li key={item} className="relative pl-5 text-[0.95rem] text-text-mute">
-                    <span className="absolute left-0 top-[9px] h-2 w-2 rounded-sm bg-gradient-accent" />
+                  <li key={item} className="flex items-start gap-2.5 text-[0.9rem] text-ink-600">
+                    <CheckCircle weight="fill" className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <span className="absolute right-7 top-6 font-heading text-4xl font-bold text-white/5">
-                {card.number}
-              </span>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 transition-transform group-hover:gap-2.5"
+              >
+                {card.link}
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </article>
           ))}
         </div>

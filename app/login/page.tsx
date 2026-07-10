@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AuthShell, authInputClass } from "@/components/auth/AuthShell";
 import { createClient } from "@/lib/supabase/client";
+import { Navbar } from "@/components/marketing/Navbar";
+import { Footer } from "@/components/marketing/Footer";
 
 function LoginForm() {
   const router = useRouter();
@@ -99,8 +101,12 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense>
-      <LoginForm />
-    </Suspense>
+    <>
+      <Navbar />
+      <Suspense>
+        <LoginForm />
+      </Suspense>
+      <Footer />
+    </>
   );
 }

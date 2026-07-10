@@ -36,13 +36,9 @@ export function Simulator() {
 
   return (
     <section id="simulateur" className="bg-navy-950 py-28">
-      <div className="mx-auto max-w-[1200px] px-6">
+      <div className="mx-auto max-w-[1100px] px-6">
         <div className="mx-auto mb-14 max-w-[640px] text-center">
-          <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
-            <span className="h-[7px] w-[7px] rounded-full bg-gradient-accent shadow-[0_0_12px_#ff5a1f]" />
-            Outil interactif
-          </p>
-          <h2 className="font-heading text-3xl font-bold md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-text-main md:text-4xl">
             Simulateur de configuration énergétique
           </h2>
           <p className="mt-3 text-base text-text-mute">
@@ -114,11 +110,11 @@ export function Simulator() {
             </div>
           </div>
 
-          <div className="relative min-h-[420px] rounded-2xl border border-accent-500/25 bg-gradient-to-b from-accent-500/[0.08] to-navy-700 p-9">
+          <div className="relative min-h-[420px] rounded-2xl bg-surface-card p-9 shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
             {loading && (
-              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 rounded-2xl bg-navy-700">
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 rounded-2xl bg-surface-card">
                 <div className="h-11 w-11 animate-spin rounded-full border-[3px] border-accent-500/15 border-t-accent-500" />
-                <p className="text-sm text-text-mute">Calcul de la préconisation...</p>
+                <p className="text-sm text-ink-600">Calcul de la préconisation...</p>
               </div>
             )}
 
@@ -126,10 +122,10 @@ export function Simulator() {
               <span className="mb-3.5 text-xs font-bold uppercase tracking-[0.08em] text-accent-500">
                 Préconisation recommandée
               </span>
-              <h3 className="mb-3.5 font-heading text-2xl font-bold">{recommendation.title}</h3>
-              <p className="text-text-mute">{recommendation.description}</p>
+              <h3 className="mb-3.5 font-heading text-2xl font-bold text-ink-900">{recommendation.title}</h3>
+              <p className="text-ink-600">{recommendation.description}</p>
 
-              <ul className="my-6 border-t border-border-soft pt-5">
+              <ul className="my-6 border-t border-border-light pt-5">
                 {[
                   ["Puissance", `${powerKva} kVA`],
                   ["Équipement", EQUIPMENT_OPTIONS.find((o) => o.key === equipment)?.label ?? ""],
@@ -137,9 +133,9 @@ export function Simulator() {
                 ].map(([label, value]) => (
                   <li
                     key={label}
-                    className="flex justify-between border-b border-dashed border-border-soft py-2 text-[0.92rem]"
+                    className="flex justify-between border-b border-dashed border-border-light py-2 text-[0.92rem] text-ink-900"
                   >
-                    <span className="text-text-faint">{label}</span>
+                    <span className="text-ink-400">{label}</span>
                     <strong>{value}</strong>
                   </li>
                 ))}
