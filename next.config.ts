@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
   // dossier parent (ex. Documents/AUTRES) fait croire à un monorepo et
   // server.js atterrit dans .next/standalone/<chemin>/ au lieu de .next/standalone/.
   outputFileTracingRoot: path.join(__dirname),
-  turbopack: { root: path.join(__dirname) },
   images: {
     remotePatterns: [
       // Photos envoyées depuis l'admin (bucket Supabase "site-media").
