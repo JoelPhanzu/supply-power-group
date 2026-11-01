@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -5,6 +6,11 @@ const nextConfig: NextConfig = {
   // "standalone" produces a minimal .next/standalone/server.js that just
   // needs `node server.js` and listens on process.env.PORT on its own.
   output: "standalone",
+  // Fige la racine sur ce dossier : sans ça, un package-lock.json dans un
+  // dossier parent (ex. Documents/AUTRES) fait croire à un monorepo et
+  // server.js atterrit dans .next/standalone/<chemin>/ au lieu de .next/standalone/.
+  outputFileTracingRoot: path.join(__dirname),
+  turbopack: { root: path.join(__dirname) },
   images: {
     remotePatterns: [
       // Photos envoyées depuis l'admin (bucket Supabase "site-media").
