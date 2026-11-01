@@ -1,69 +1,58 @@
-import Image from "next/image";
+import { SiteImage } from "@/components/ui/SiteImage";
+import type { SiteContent } from "@/lib/content/schema";
 
-const INFO_BLOCKS = [
-  {
-    label: "Extraction",
-    description: "Uranium et Hydrocarbures",
-  },
-  {
-    label: "Infrastructure",
-    description: "Cabines de raccordement dédiées",
-  },
-];
+export function MiningSection({ content }: { content: SiteContent["mining"] }) {
+  const [main, ...others] = content.images.filter((img) => img?.url);
 
-export function MiningSection() {
   return (
     <section id="realisations" className="bg-surface-page py-28">
       <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-14 px-6 md:grid-cols-2">
         <div className="grid grid-cols-2 gap-4">
-          <div className="relative col-span-2 h-[200px] overflow-hidden rounded-[24px]">
-            <Image
-              src="https://picsum.photos/seed/supply-power-solar-panels/900/500"
-              alt="Ferme solaire industrielle"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="relative h-[160px] overflow-hidden rounded-[24px]">
-            <Image
-              src="https://picsum.photos/seed/supply-power-mining-excavator/450/400"
-              alt="Excavatrice sur site minier"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="relative h-[160px] overflow-hidden rounded-[24px]">
-            <Image
-              src="https://picsum.photos/seed/supply-power-industrial-equipment/450/400"
-              alt="Équipement industriel"
-              fill
-              className="object-cover"
-            />
-          </div>
+          {main && (
+            <div className="relative col-span-2 h-[200px] overflow-hidden rounded-[24px]">
+              <SiteImage
+                src={main.url}
+                alt={main.alt}
+                fill
+                sizes="(min-width: 768px) 550px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          )}
+          {others.map((img, i) => (
+            <div key={`${img.url}-${i}`} className="relative h-[160px] overflow-hidden rounded-[24px]">
+              <SiteImage
+                src={img.url}
+                alt={img.alt}
+                fill
+                sizes="(min-width: 768px) 270px, 50vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
 
         <div>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-accent-500">
-            Transition & acteur minier
+            {content.eyebrow}
           </p>
           <h2 className="mb-5 font-heading text-3xl font-bold text-ink-900 md:text-[2.3rem]">
-            De la ressource minière à l&apos;indépendance
+            {content.title}
           </h2>
-          <p className="mb-4 text-ink-600">
-            SUPPLY POWER GROUP combine ses expertises énergétiques et son rôle d&apos;acteur minier
-            en RDC. Nous intervenons dans l&apos;extraction et la transformation de ressources
-            stratégiques d&apos;uranium et d&apos;hydrocarbures nécessaires à la souveraineté
-            énergétique.
-          </p>
-          <p className="mb-7 text-ink-600">
-            Parallèlement, nous déployons des micro-réseaux et des solutions d&apos;alimentation
-            hybrides (solaire/diesel) directement sur les sites d&apos;exploitation minière pour
-            assurer un approvisionnement continu, propre et sans interruptions.
-          </p>
+          {content.paragraphs.map((p, i) => (
+            <p
+              key={i}
+              className={`whitespace-pre-line text-ink-600 ${
+                i === content.paragraphs.length - 1 ? "mb-7" : "mb-4"
+              }`}
+            >
+              {p}
+            </p>
+          ))}
           <div className="grid grid-cols-2 gap-4">
-            {INFO_BLOCKS.map((block) => (
+            {content.blocks.map((block, i) => (
               <div
-                key={block.label}
+                key={`${block.label}-${i}`}
                 className="rounded-2xl border border-border-light bg-surface-card px-5 py-4"
               >
                 <p className="mb-1 text-sm font-bold text-ink-900">{block.label}</p>

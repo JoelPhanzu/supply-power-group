@@ -1,30 +1,37 @@
-import Image from "next/image";
-
-// Intrinsic logo file ratio is 1368x768 (≈1.78:1).
-const RATIO = 1368 / 768;
+import { SiteImage } from "@/components/ui/SiteImage";
+import type { SiteImage as SiteImageValue } from "@/lib/content/schema";
 
 const HEIGHTS = {
   sm: 32,
   md: 40,
 };
 
+const DEFAULT_LOGOS = {
+  light: { url: "/logo/logo-light.png", alt: "Supply Power Group" },
+  dark: { url: "/logo/logo-dark.png", alt: "Supply Power Group" },
+};
+
 export function Logo({
   theme = "light",
   size = "md",
+  image,
 }: {
   theme?: "light" | "dark";
   size?: "sm" | "md";
+  image?: SiteImageValue;
 }) {
   const height = HEIGHTS[size];
-  const width = Math.round(height * RATIO);
+  const logo = image?.url ? image : DEFAULT_LOGOS[theme];
 
   return (
-    <Image
-      src={theme === "light" ? "/logo/logo-light.png" : "/logo/logo-dark.png"}
-      alt="Supply Power Group"
-      width={width}
+    // Hauteur fixe, largeur libre : un logo remplacé peut avoir un autre format.
+    <SiteImage
+      src={logo.url}
+      alt={logo.alt || "Supply Power Group"}
+      width={Math.round(height * 4)}
       height={height}
       priority
+      style={{ height, width: "auto" }}
     />
   );
 }

@@ -4,8 +4,9 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useSimulator } from "@/components/marketing/SimulatorContext";
 import { submitQuoteRequest } from "@/lib/actions/quote-requests";
 import { ASSISTANCE_TYPES } from "@/lib/assistance-types";
+import type { SiteContent } from "@/lib/content/schema";
 
-export function ContactForm() {
+export function ContactForm({ content }: { content: SiteContent["contact"] }) {
   const { prefillMessage } = useSimulator();
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("+243 ");
@@ -57,12 +58,9 @@ export function ContactForm() {
       <div className="mx-auto max-w-[720px] px-6">
         <div className="mb-10 text-center">
           <h2 className="mb-3 font-heading text-3xl font-bold text-ink-900 md:text-4xl">
-            Faire une Demande d&apos;Étude
+            {content.title}
           </h2>
-          <p className="text-ink-600">
-            Remplissez ce formulaire d&apos;avant-projet. Nos techniciens vous recontacteront sous
-            24 heures pour planifier un audit technique ou chiffrer vos fournitures.
-          </p>
+          <p className="whitespace-pre-line text-ink-600">{content.subtitle}</p>
         </div>
 
         <form
@@ -137,13 +135,12 @@ export function ContactForm() {
             disabled={pending}
             className="inline-flex w-full items-center justify-center rounded-full bg-ink-900 px-8 py-4 text-base font-semibold text-white shadow-[0_10px_25px_rgba(18,21,31,0.2)] transition-all hover:-translate-y-0.5 hover:bg-navy-900 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {pending ? "Envoi en cours..." : "Soumettre mon projet"}
+            {pending ? "Envoi en cours..." : content.submitLabel}
           </button>
 
           {submitted && (
             <p className="mt-4 rounded-lg border border-emerald-400/35 bg-emerald-50 px-4 py-3.5 text-center text-sm text-emerald-700">
-              Merci ! Votre demande a bien été enregistrée. Notre équipe vous recontactera très
-              prochainement.
+              {content.successMessage}
             </p>
           )}
         </form>

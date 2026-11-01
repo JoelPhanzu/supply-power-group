@@ -7,6 +7,14 @@ export type QuoteStatus =
 
 export type UserRole = "client" | "admin";
 
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
 export type ClaimStatus = "open" | "in_progress" | "resolved" | "rejected";
 
 export interface Database {
@@ -124,6 +132,24 @@ export interface Database {
           body: string;
         };
         Update: never;
+        Relationships: [];
+      };
+      site_content: {
+        Row: {
+          key: string;
+          value: Json;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          key: string;
+          value: Json;
+          updated_by?: string | null;
+        };
+        Update: {
+          value?: Json;
+          updated_by?: string | null;
+        };
         Relationships: [];
       };
     };

@@ -7,22 +7,29 @@ import { Leadership } from "@/components/marketing/Leadership";
 import { ContactForm } from "@/components/marketing/ContactForm";
 import { Footer } from "@/components/marketing/Footer";
 import { SimulatorProvider } from "@/components/marketing/SimulatorContext";
+import { getSiteContent } from "@/lib/content/get";
 
-export default function Home() {
+// Régénérée immédiatement à chaque enregistrement depuis l'admin
+// (revalidatePath), avec un filet de sécurité toutes les 5 minutes.
+export const revalidate = 300;
+
+export default async function Home() {
+  const content = await getSiteContent();
+
   return (
     <>
-      <Navbar />
+      <Navbar content={content.nav} logo={content.brand.logoLight} />
       <main>
-        <SimulatorProvider>
-          <Hero />
-          <Expertises />
-          <MiningSection />
-          <Simulator />
-          <Leadership />
-          <ContactForm />
+        <SimulatorProvider defaultLocation={content.simulator.locations[0]}>
+          <Hero content={content.hero} stats={content.stats} />
+          <Expertises content={content.expertises} />
+          <MiningSection content={content.mining} />
+          <Simulator content={content.simulator} />
+          <Leadership content={content.leadership} />
+          <ContactForm content={content.contact} />
         </SimulatorProvider>
       </main>
-      <Footer />
+      <Footer content={content.footer} logo={content.brand.logoDark} />
     </>
   );
 }

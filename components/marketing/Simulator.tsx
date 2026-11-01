@@ -4,16 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { Plug, GasPump, Sun } from "@phosphor-icons/react";
 import { getRecommendation, type EquipmentType } from "@/lib/simulator";
 import { useSimulator } from "@/components/marketing/SimulatorContext";
+import type { SiteContent } from "@/lib/content/schema";
 
-const EQUIPMENT_OPTIONS: { key: EquipmentType; label: string; icon: typeof Plug }[] = [
-  { key: "cabine", label: "Cabine HT/BT", icon: Plug },
-  { key: "groupe", label: "Groupe Élec", icon: GasPump },
-  { key: "solaire", label: "Solaire Hybride", icon: Sun },
-];
-
-const LOCATIONS = ["Kinshasa", "Lubumbashi", "Kolwezi", "Site minier isolé", "Autre province"];
-
-export function Simulator() {
+export function Simulator({ content }: { content: SiteContent["simulator"] }) {
+  const EQUIPMENT_OPTIONS: { key: EquipmentType; label: string; icon: typeof Plug }[] = [
+    { key: "cabine", label: content.cabineLabel, icon: Plug },
+    { key: "groupe", label: content.groupeLabel, icon: GasPump },
+    { key: "solaire", label: content.solaireLabel, icon: Sun },
+  ];
+  const LOCATIONS = content.locations;
   const { equipment, setEquipment, powerKva, setPowerKva, location, setLocation } =
     useSimulator();
   const [loading, setLoading] = useState(false);
@@ -39,10 +38,10 @@ export function Simulator() {
       <div className="mx-auto max-w-[1100px] px-6">
         <div className="mx-auto mb-14 max-w-[640px] text-center">
           <h2 className="font-heading text-3xl font-bold text-text-main md:text-4xl">
-            Simulateur de configuration énergétique
+            {content.title}
           </h2>
           <p className="mt-3 text-base text-text-mute">
-            Estimez en quelques secondes la solution la mieux adaptée à votre besoin en puissance.
+            {content.subtitle}
           </p>
         </div>
 
@@ -145,7 +144,7 @@ export function Simulator() {
                 href="#contact"
                 className="inline-flex w-full items-center justify-center rounded-full bg-gradient-accent px-8 py-4 text-base font-semibold text-white shadow-[0_10px_30px_rgba(255,60,40,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(255,60,40,0.5)]"
               >
-                Valider et Demander le Devis à Exaucé Matadi
+                {content.ctaLabel}
               </a>
             </div>
           </div>

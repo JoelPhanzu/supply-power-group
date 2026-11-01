@@ -6,8 +6,12 @@ const nextConfig: NextConfig = {
   // needs `node server.js` and listens on process.env.PORT on its own.
   output: "standalone",
   images: {
-    // TODO: remove once real photography replaces the picsum placeholders.
-    remotePatterns: [{ protocol: "https", hostname: "picsum.photos" }],
+    remotePatterns: [
+      // Photos envoyées depuis l'admin (bucket Supabase "site-media").
+      { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
+      // Photos d'illustration par défaut, tant qu'elles ne sont pas remplacées.
+      { protocol: "https", hostname: "picsum.photos" },
+    ],
   },
 };
 

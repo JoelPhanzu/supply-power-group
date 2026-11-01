@@ -7,15 +7,16 @@ import { createClient } from "@/lib/supabase/client";
 import { Logo } from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
+import type { SiteContent } from "@/lib/content/schema";
 
-const LINKS = [
-  { href: "/#hero", label: "Accueil" },
-  { href: "/#expertises", label: "Nos expertises" },
-  { href: "/#realisations", label: "Réalisations" },
-  { href: "/#contact", label: "Contact" },
-];
-
-export function Navbar() {
+export function Navbar({
+  content,
+  logo,
+}: {
+  content: SiteContent["nav"];
+  logo?: SiteContent["brand"]["logoLight"];
+}) {
+  const LINKS = content.links;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
@@ -43,13 +44,13 @@ export function Navbar() {
         }`}
       >
         <Link href="/" className="flex-shrink-0">
-          <Logo theme="light" size="sm" />
+          <Logo theme="light" size="sm" image={logo} />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {LINKS.map((link) => (
+          {LINKS.map((link, i) => (
             <a
-              key={link.href}
+              key={`${link.href}-${i}`}
               href={link.href}
               className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-900"
             >
@@ -72,7 +73,7 @@ export function Navbar() {
             </Link>
           )}
           <ButtonLink href="/#contact" variant="dark" size="md">
-            Demander un devis
+            {content.ctaLabel}
           </ButtonLink>
         </div>
 
@@ -87,9 +88,9 @@ export function Navbar() {
 
       {open && (
         <nav className="mx-auto mt-2 flex max-w-[1100px] flex-col gap-4 rounded-3xl bg-surface-card px-6 py-5 shadow-[0_12px_36px_rgba(18,21,31,0.14)] md:hidden">
-          {LINKS.map((link) => (
+          {LINKS.map((link, i) => (
             <a
-              key={link.href}
+              key={`${link.href}-${i}`}
               href={link.href}
               onClick={() => setOpen(false)}
               className="text-sm font-medium text-ink-600 hover:text-ink-900"
@@ -108,7 +109,7 @@ export function Navbar() {
             <LogoutButton className="text-left text-sm font-medium text-ink-600 hover:text-ink-900" />
           )}
           <ButtonLink href="/#contact" variant="dark" size="md" className="justify-center">
-            Demander un devis
+            {content.ctaLabel}
           </ButtonLink>
         </nav>
       )}

@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AuthShell, authInputClass } from "@/components/auth/AuthShell";
 import { createClient } from "@/lib/supabase/client";
-import { Navbar } from "@/components/marketing/Navbar";
-import { Footer } from "@/components/marketing/Footer";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -52,7 +50,6 @@ export default function SignupPage() {
   if (needsConfirmation) {
     return (
       <>
-        <Navbar />
         <AuthShell
           title="Vérifie ta boîte mail"
           subtitle="Dernière étape avant d'accéder à ton espace."
@@ -67,14 +64,12 @@ export default function SignupPage() {
             Clique sur le lien qu&apos;il contient pour activer ton compte.
           </p>
         </AuthShell>
-        <Footer />
       </>
     );
   }
 
   return (
     <>
-      <Navbar />
       <AuthShell
         title="Créer un compte"
         subtitle="Suis tes demandes de devis et échange directement avec notre équipe."
@@ -156,7 +151,6 @@ export default function SignupPage() {
         </button>
       </form>
     </AuthShell>
-      <Footer />
     </>
   );
 }

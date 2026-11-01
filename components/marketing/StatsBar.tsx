@@ -26,36 +26,39 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   );
 }
 
-const STATS: { value: number | null; suffix: string; label: string; staticValue?: string }[] = [
-  { value: 50, suffix: "+ MW", label: "Capacité de production" },
-  { value: 1000, suffix: "+ KM", label: "Lignes HT/BT déployées" },
-  { value: null, suffix: "", staticValue: "24/7", label: "Maintenance & intervention" },
-  { value: 100, suffix: "%", label: "Solutions clés en main" },
-];
+// "50+ MW" -> anime 50 puis affiche "+ MW". "24/7" reste statique.
+function parseValue(raw: string): { target: number; suffix: string } | null {
+  const match = /^(\d+)(?![\d/])(.*)$/.exec(raw.trim());
+  if (!match) return null;
+  return { target: Number(match[1]), suffix: match[2] };
+}
 
-export function StatsBar() {
+export function StatsBar({ items }: { items: { value: string; label: string }[] }) {
   return (
     <div className="rounded-[28px] bg-surface-card px-6 py-8 shadow-[0_24px_60px_rgba(18,21,31,0.14)]">
       <div className="grid grid-cols-2 gap-y-6 md:grid-cols-4 md:gap-y-0">
-        {STATS.map((stat, i) => (
-          <div
-            key={stat.label}
-            className={`flex flex-col items-center gap-1.5 border-border-light px-2 text-center md:border-r md:last:border-r-0 ${
-              i % 2 === 0 ? "border-r" : ""
-            }`}
-          >
-            {stat.value !== null ? (
-              <Counter target={stat.value} suffix={stat.suffix} />
-            ) : (
-              <span className="text-gradient-accent font-heading text-2xl font-bold md:text-4xl">
-                {stat.staticValue}
+        {items.map((stat, i) => {
+          const parsed = parseValue(stat.value);
+          return (
+            <div
+              key={`${stat.label}-${i}`}
+              className={`flex flex-col items-center gap-1.5 border-border-light px-2 text-center md:border-r md:last:border-r-0 ${
+                i % 2 === 0 ? "border-r" : ""
+              }`}
+            >
+              {parsed ? (
+                <Counter target={parsed.target} suffix={parsed.suffix} />
+              ) : (
+                <span className="text-gradient-accent font-heading text-2xl font-bold md:text-4xl">
+                  {stat.value}
+                </span>
+              )}
+              <span className="text-[0.78rem] uppercase tracking-wide text-ink-400">
+                {stat.label}
               </span>
-            )}
-            <span className="text-[0.78rem] uppercase tracking-wide text-ink-400">
-              {stat.label}
-            </span>
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

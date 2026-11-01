@@ -15,10 +15,16 @@ interface SimulatorState {
 
 const SimulatorCtx = createContext<SimulatorState | null>(null);
 
-export function SimulatorProvider({ children }: { children: ReactNode }) {
+export function SimulatorProvider({
+  children,
+  defaultLocation = "Kinshasa",
+}: {
+  children: ReactNode;
+  defaultLocation?: string;
+}) {
   const [equipment, setEquipment] = useState<EquipmentType>("cabine");
   const [powerKva, setPowerKva] = useState(250);
-  const [location, setLocation] = useState("Kinshasa");
+  const [location, setLocation] = useState(defaultLocation);
 
   const prefillMessage = useMemo(
     () =>
